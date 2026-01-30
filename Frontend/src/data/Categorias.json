@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "titulo": "OFERTAS",
+    "path": "/sale",
+    "img": "/src/assets/img/logo-oferta.jpg",
+    "descripcion": "Ofertas exclusivas en equipo de temporada."
+  },
+  {
+    "id": 2,
+    "titulo": "PESCA CON MOSCA",
+    "path": "/PescaMosca",
+    "img": "/SRC/assets/img/img-fly.jpeg",
+    "descripcion": "Cañas, carretes y moscas de alta gama."
+  },
+  {
+    "id": 3,
+    "titulo": "PESCA TRADICIONAL",
+    "path": "/tradicional",
+    "img": "/src/assets/img/img-spinning.jpeg",
+    "descripcion": "Todo para pesca variada y spinning."
+  }
+]

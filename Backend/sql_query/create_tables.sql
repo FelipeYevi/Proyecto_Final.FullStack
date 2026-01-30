@@ -1,0 +1,34 @@
+
+-- TABLA USUARIOS
+
+CREATE TABLE  users (
+  id TEXT PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+
+-- TABLA PRODUCTOS
+
+CREATE TABLE productos (
+  id TEXT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  img TEXT NOT NULL,
+  descripcion TEXT,
+  detail TEXT[],
+  precio INTEGER NOT NULL,
+  categoria VARCHAR(100),
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+
+--TABLA CHECKOUTS
+
+CREATE TABLE checkouts (
+  id SERIAL PRIMARY KEY,
+  user_id TEXT REFERENCES users(id),
+  cart JSONB NOT NULL,
+  total INTEGER NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);

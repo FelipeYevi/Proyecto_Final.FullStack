@@ -1,0 +1,93 @@
+/* container*/
+.category-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.product-card-horizontal {
+  min-height: 270px;
+  max-height: 270px;
+  transition: all 0.3s ease;
+  border: none !important;
+}
+
+.product-card-horizontal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Contenedor imagen */
+.product-img-container {
+  height: 270px;
+  background-color: #ffffff;
+}
+
+.product-img-container img {
+  max-height: 200px;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* Titulo */
+.product-title {
+  font-size: 1.05rem;
+  color: #212529;
+}
+
+/* descripcion */
+.product-specs-container {
+  overflow-y: auto;
+  max-height: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.product-specs-label {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #6c757d;
+}
+
+.spec-badge {
+  font-size: 0.7rem;
+  white-space: normal;
+  text-align: left;
+  border-radius: 4px;
+}
+
+
+.product-specs-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.product-specs-container::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+/*precio */
+.price-label {
+  font-size: 0.6rem;
+  color: #6c757d;
+}
+
+.price-value {
+  font-size: 1.3rem;
+  color: #0d6efd; }
+
+/* Botones y animaciones */
+.btn-custom {
+  font-size: 0.65rem !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.btn-custom:active {
+  transform: scale(0.92);
+}
+
+.btn-added {
+  background-color: #198754 !important; 
+  border-color: #198754 !important;
+}
+
