@@ -16,9 +16,7 @@ const Cart = () => {
     const getProductos = async () => {
       try {
         const response = await fetch("http://localhost:5000/api/productos");
-        if (!response.ok) {
-          throw new Error("Error al obtener los productos");
-        }
+        if (!response.ok) throw new Error("Error al obtener los productos");
         await response.json();
       } catch (err) {
         setError(err.message);
@@ -29,34 +27,34 @@ const Cart = () => {
     getProductos();
   }, []);
 
-const handleCheckout = async () => {
-  if (!token) {
-    setShowAlert(true);
-    return;
-  }
+  const handleCheckout = async () => {
+    if (!token) {
+      setShowAlert(true);
+      return;
+    }
 
-  // logica pago
-  try {
-    const payload = {
-      items: cart.map((producto) => ({
-        id: producto.id,
-        quantity: producto.quantity,
-      })),
-    };
+    try {
+   
+      const payload = {
+        items: cart.map((producto) => ({
+          id: producto.id,
+          quantity: producto.quantity,
+          unit_price: producto.price 
+        })),
+      };
 
-    await axios.post(
-      "http://localhost:5000/api/checkouts",
-      payload,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
+      const res = await axios.post(
+        "http://localhost:5000/api/checkouts",
+        payload,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    setSuccessMessage("Checkout realizado con éxito");
-  } catch (err) {
-    setError(err.response?.data?.error || "Error en el checkout");
-  }
-};
+      setSuccessMessage("Pedido realizado con éxito");
+    } catch (err) {
+      console.error("ERROR CHECKOUT:", err); 
+      setError("Error al procesar la compra");
+    }
+  };
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -67,46 +65,20 @@ const handleCheckout = async () => {
       <h2>Detalles del pedido:</h2>
       <ul className="list-group">
         {cart.map((producto) => (
-          <li
-            key={producto.id}
-            className="list-group-item d-flex align-items-center"
-          >
-            <img
-              src={producto.img}
-              alt={producto.name}
-              className="me-3"
-              style={{ width: "100px", height: "100px" }}
-            />
+          <li key={producto.id} className="list-group-item d-flex align-items-center">
+            <img src={producto.img} alt={producto.name} className="me-3" style={{ width: "100px", height: "100px" }} />
             <span className="me-auto">{producto.name}</span>
             <span className="me-3">${producto.price.toLocaleString()}</span>
-            <button
-              className="btn btn-outline-danger me-2"
-              onClick={() => removeFromCart(producto.id)}
-            >
-              -
-            </button>
+            <button className="btn btn-outline-danger me-2" onClick={() => removeFromCart(producto.id)}>-</button>
             <span>{producto.quantity}</span>
-            <button
-              className="btn btn-outline-primary ms-2"
-              onClick={() => addToCart(producto)}
-            >
-              +
-            </button>
+            <button className="btn btn-outline-primary ms-2" onClick={() => addToCart(producto)}>+</button>
           </li>
         ))}
       </ul>
       <h3 className="mt-3">Total: ${total.toLocaleString()}</h3>
-      <button className="btn btn-dark mt-2" onClick={handleCheckout}>
-        Pagar
-      </button>
-      {successMessage && (
-        <div className="alert alert-success mt-3">{successMessage}</div>
-      )}
-      <ModalAlert
-      show={showAlert}
-      onClose={() => setShowAlert(false)}
-      message="Debe iniciar sesión para realizar el pago"
-    />
+      <button className="btn btn-dark mt-2" onClick={handleCheckout}>Pagar</button>
+      {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
+      <ModalAlert show={showAlert} onClose={() => setShowAlert(false)} message="Debe iniciar sesión para realizar el pago" />
     </div>
   );
 };

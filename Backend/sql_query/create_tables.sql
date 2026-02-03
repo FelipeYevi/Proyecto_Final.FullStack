@@ -25,10 +25,31 @@ CREATE TABLE productos (
 
 --TABLA CHECKOUTS
 
+
 CREATE TABLE checkouts (
-  id SERIAL PRIMARY KEY,
-  user_id TEXT REFERENCES users(id),
-  cart JSONB NOT NULL,
+  id SERIAL PRIMARY KEY, 
+  user_id TEXT NOT NULL,
   total INTEGER NOT NULL,
   created_at TIMESTAMP DEFAULT NOW()
+);
+
+--TABLA CHECKOUT_ITEM
+CREATE TABLE checkout_items (
+  id SERIAL PRIMARY KEY,
+  checkout_id INTEGER NOT NULL REFERENCES checkouts(id) ON DELETE CASCADE,
+  product_id TEXT NOT NULL,
+  quantity INTEGER NOT NULL,
+  unit_price INTEGER NOT NULL,
+  subtotal INTEGER NOT NULL
+);
+
+--TABLA CART_ITEMS
+CREATE TABLE IF NOT EXISTS cart_items (
+  id SERIAL PRIMARY KEY,
+  user_email TEXT NOT NULL,
+  product_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  img TEXT,
+  quantity INTEGER NOT NULL
 );

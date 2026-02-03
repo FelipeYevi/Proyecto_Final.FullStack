@@ -1,6 +1,10 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { NavLink,useLocation } from "react-router-dom";
 const SidebarAdmin = ({ onAñadirProducto }) => {
+  const location = useLocation();
+
+  const esGestionProductos = location.pathname === "/adminpage";
+
   return (
     <aside
       className="col-12 col-md-3 col-lg-2 bg-light border-end p-4 shadow-sm"
@@ -12,21 +16,29 @@ const SidebarAdmin = ({ onAñadirProducto }) => {
         </h5>
 
         <nav className="d-flex flex-column gap-2">
-          {/* AGREGAR PRODUCTO */}
-          <button
-            className="btn btn-outline-dark fw-semibold"
-            onClick={onAñadirProducto}
-          >
-            ➕ Agregar Producto
-          </button>
+          <NavLink to="/adminpage" className="btn btn-outline-dark fw-semibold">
+           
+            ⚙️ Gestión de productos
+          </NavLink>
+         {esGestionProductos && (
+            <button
+              className="btn btn-outline-dark fw-semibold"
+              onClick={onAñadirProducto}
+            >
+              ➕ Agregar Producto
+            </button>
+          )}
 
-          <button className="btn btn-outline-dark fw-semibold">
+          <NavLink to="/adminPedidos" className="btn btn-outline-dark fw-semibold">
             🧾 Pedidos
-          </button>
+          </NavLink>
 
-          <button className="btn btn-outline-dark fw-semibold">
+          <NavLink
+            to="/adminUsuarios"
+            className="btn btn-outline-dark fw-semibold"
+          >
             👥 Usuarios
-          </button>
+          </NavLink>
         </nav>
 
         <hr className="my-4" />

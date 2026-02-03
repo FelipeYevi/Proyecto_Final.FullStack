@@ -5,15 +5,13 @@ import { useUser } from "../context/userContext";
 import "../Css/Navbar.css";
 
 const Navbar = () => {
-
-  const { total, handleLogoutCart } = useCart(); 
+  const { total, handleLogoutCart } = useCart();
   const { token, role, logout } = useUser();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-   
-      await handleLogoutCart(); 
+      await handleLogoutCart();
       logout();
       navigate("/login");
     } catch (error) {
@@ -24,15 +22,13 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark px-3 p-0">
       <div className="d-flex align-items-center gap-2">
-    <img
-      src="../src/assets/img/logo-full-fishing.png"
-      alt="Logo Full Fishing"
-      className="navbar-logo"
-    />
-    <span className="navbar-brand fw-bold m-0">
-      FULL FISHING
-    </span>
-  </div>
+        <img
+          src="../src/assets/img/logo-full-fishing.png"
+          alt="Logo Full Fishing"
+          className="navbar-logo"
+        />
+        <span className="navbar-brand fw-bold m-0">FULL FISHING</span>
+      </div>
       <div>
         <Link to="/" className="btn btn-secondary mx-1">
           🏠 Home
@@ -40,17 +36,17 @@ const Navbar = () => {
 
         {token ? (
           <>
-          {role === "admin" && (
+            {role === "admin" && (
               <Link to="/adminpage" className="btn btn-warning mx-1 fw-bold">
                 ⚙️ Admin Panel
               </Link>
-          )}
-          {role === "user" && (
-            <Link to="/profile" className="btn btn-secondary mx-1">
-              🔓 Profile
-            </Link>
-          )}
-           
+            )}
+            {role === "user" && (
+              <Link to="/profile" className="btn btn-secondary mx-1">
+                🔓 Profile
+              </Link>
+            )}
+
             <button onClick={handleLogout} className="btn btn-danger mx-1">
               🔒 Logout
             </button>
@@ -65,10 +61,11 @@ const Navbar = () => {
             </Link>
           </>
         )}
-
-        <Link to="/cart" className="btn btn-success mx-1">
-          🛒 Total: ${total.toLocaleString()}
-        </Link>
+        {role !== "admin" && (
+          <Link to="/cart" className="btn btn-success mx-1">
+            🛒 Total: ${total.toLocaleString()}
+          </Link>
+        )}
       </div>
     </nav>
   );

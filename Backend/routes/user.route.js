@@ -4,7 +4,7 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-// Ruta actualizar datoperfil
+// Ruta actu perfil
 router.put("/perfil", authMiddleware, userController.updateProfile);
 
 // Ruta estadísticas pedidos

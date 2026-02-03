@@ -1,5 +1,5 @@
 .home-header-container {
-  height: 50vh;
+  height: 40vh;
   min-height: 320px;
   max-height: 520px;
   overflow: hidden;
@@ -31,6 +31,17 @@
   font-size: 1.1rem;
 }
 
+  .carousel-caption h1 {
+    font-size: 1.5rem;
+    text-align: center;
+
+    
+  }
+
+  .carousel-caption p {
+    font-size: 0.9rem;
+
+  }
 
 @media (max-width: 768px) {
   .home-header-container {
@@ -38,12 +49,6 @@
     min-height: 260px;
   }
 
-  .carousel-caption h1 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
 
-  .carousel-caption p {
-    font-size: 0.9rem;
-  }
 }
+

@@ -12,6 +12,10 @@ import Sale from "./pages/Productos/Sale";
 import Tradicional from "./pages/Productos/Tradicional";
 import DetalleProducto from "./pages/DetalleProducto";
 import AdminPage from "./pages/AdminPage";
+import AdminPedidos from "./pages/adminPedidos";
+
+import AdminUsuarios from "./pages/adminUsuarios";
+
 import { useUser } from "./context/userContext";
 
 const App = () => {
@@ -45,14 +49,18 @@ const App = () => {
           element={token ? <Profile /> : <Navigate to="/login" />}
         />
 
-        {/* ruta admin (Protegida por Token y Rol) */}
-        <Route 
-          path="/AdminPage" 
-          element={token && role === "admin" ? <AdminPage /> : <Navigate to="/" />} 
+        {/* ruta admin  */}
+        <Route
+          path="/AdminPage"
+          element={
+            token && role === "admin" ? <AdminPage /> : <Navigate to="/" />
+          }
         />
+        <Route path="/adminPedidos" element={<AdminPedidos />} />
 
-       
         <Route path="*" element={<NotFoundPage />} />
+
+        <Route path="/adminUsuarios" element={<AdminUsuarios />} />
       </Routes>
       <Footer />
     </>

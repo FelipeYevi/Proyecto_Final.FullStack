@@ -54,7 +54,7 @@ useEffect(() => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // Actualizamos el contexto con los nuevos datos devueltos por el servidor
+
       setUser({ ...user, ...data });
       alert("¡Perfil actualizado!");
       setIsModalOpen(false);
@@ -64,6 +64,8 @@ useEffect(() => {
   };
 
   if (!user) return <div className="container my-5 text-center">Cargando datos de usuario...</div>;
+
+  
 
   return (
     <div className="container my-5">
@@ -106,7 +108,7 @@ useEffect(() => {
           <button className="btn btn-outline-primary btn-sm" onClick={() => setIsModalOpen(true)}>Editar</button>
         </div>
         <ul className="list-unstyled mb-0">
-          {/* Usamos || para mostrar 'No especificada' solo si el dato es realmente nulo o vacío */}
+      
           <li>📍 <strong>Región:</strong> {user.region || "No especificada"}</li>
           <li>🏠 <strong>Ciudad:</strong> {user.ciudad || "No especificada"}</li>
           <li>🚚 <strong>Dirección:</strong> {user.direccion || "No especificada"}</li>

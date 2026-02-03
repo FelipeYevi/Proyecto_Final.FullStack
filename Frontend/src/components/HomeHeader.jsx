@@ -8,7 +8,7 @@ const HomeHeader = () => {
         id="carouselHomeHeader"
         className="carousel slide h-60"
         data-bs-ride="carousel"
-        data-bs-interval="3500"
+        data-bs-interval="2000"
       >
         <div className="carousel-inner h-100">
 
@@ -33,7 +33,7 @@ const HomeHeader = () => {
             />
             <div className="carousel-caption">
               <h1 className="fw-bold display-5">PESCA TRADICIONAL</h1>
-              <p className="lead">Equipamiento profesional</p>
+              <p className="lead">EQUIPAMIENTO PROFESIONAL</p>
             </div>
           </div>
 
@@ -46,7 +46,7 @@ const HomeHeader = () => {
             />
             <div className="carousel-caption">
               <h1 className="fw-bold display-5">PESCA CON MOSCA</h1>
-              <p className="lead">Precisión y técnica</p>
+              <p className="lead">PRECISIÓN Y TÉCNICA</p>
             </div>
           </div>
 

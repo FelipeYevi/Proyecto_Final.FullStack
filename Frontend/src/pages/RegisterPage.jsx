@@ -34,7 +34,7 @@ const RegisterPage = () => {
       return;
     }
 
-    const result = await register({ email, password }); O
+    const result = await register({ email, password }); 
 
     
     const success = result?.success;

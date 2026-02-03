@@ -22,7 +22,7 @@ const Tradicional = () => {
       // ✅ CORRECCIÓN SEGURA:
       // Usamos (p.categoria || "") para que si es null, use un texto vacío y no explote.
       const filtrados = data.filter(p => 
-        (p.categoria || "").toLowerCase() === "pescamosca"
+        (p.categoria || "").toLowerCase() === "tradicional"
       );
       
       setProductos(filtrados);

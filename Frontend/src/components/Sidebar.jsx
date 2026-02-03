@@ -15,7 +15,7 @@ const Sidebar = () => {
   }, []);
 
   return (
-    <aside className="col-12 col-md-3 col-lg-2 bg-light border-end p-4 shadow-sm" style={{ minHeight: "100vh" }}>
+    <aside className="col-12 col-md-3 col-lg-2 border-end p-4 shadow-sm" style={{ minHeight: "100vh" }}>
       <div className="sticky-top" style={{ top: "20px" }}>
         <h5 className="mb-4 fw-bold text-center border-bottom pb-2">CATEGORÍAS</h5>
         <div className="d-grid gap-3 mb-5">

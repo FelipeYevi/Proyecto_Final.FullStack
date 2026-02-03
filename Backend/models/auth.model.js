@@ -8,7 +8,7 @@ const getUserByEmail = async (email) => {
 
 const createUser = async ({ id, email, password_hash, role }) => {
   const query = `
-    INSERT INTO usuarios (id, email, password_hash, role, region, ciudad, direccion, categoria_favorita)
+    INSERT INTO users (id, email, password_hash, role, region, ciudad, direccion, categoria_favorita)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *
   `;
@@ -19,7 +19,7 @@ const createUser = async ({ id, email, password_hash, role }) => {
 
 const updateUser = async (email, { region, ciudad, direccion, categoria_favorita }) => {
   const query = `
-    UPDATE usuarios 
+    UPDATE users 
     SET region = $1, ciudad = $2, direccion = $3, categoria_favorita = $4
     WHERE email = $5
     RETURNING id, email, role, region, ciudad, direccion, categoria_favorita
