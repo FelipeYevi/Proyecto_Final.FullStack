@@ -7,7 +7,6 @@ const crearCheckoutConItems = async ({ user_id, items }) => {
     
     const total = items.reduce((acc, item) => acc + (item.unit_price * item.quantity), 0);
 
-    // Corregimos para que coincida exactamente con la columna 'estado' que creamos
     const checkoutRes = await client.query(
       "INSERT INTO checkouts (user_id, total, estado) VALUES ($1, $2, $3) RETURNING id",
       [user_id, total, 'Pendiente']
@@ -32,7 +31,6 @@ const crearCheckoutConItems = async ({ user_id, items }) => {
 };
 
 const findAllAdmin = async () => {
-  // Limpiamos el JOIN: comparamos números con números (c.user_id = u.id)
   const query = `
     SELECT 
       c.id, 
@@ -48,5 +46,38 @@ const findAllAdmin = async () => {
   return rows;
 };
 
-// ... (findItemsByCheckoutId y updateEstado se mantienen igual)
-export const checkoutModel = { crearCheckoutConItems, findAllAdmin, findItemsByCheckoutId, updateEstado };
+
+const findItemsByCheckoutId = async (checkout_id) => {
+  const query = {
+    text: `
+      SELECT 
+        ci.*, 
+        p.name, 
+        p.img 
+      FROM checkout_items ci
+      JOIN productos p ON ci.product_id = p.id
+      WHERE ci.checkout_id = $1
+    `,
+    values: [checkout_id],
+  };
+  const { rows } = await pool.query(query);
+  return rows;
+};
+
+
+const updateEstado = async (id, estado) => {
+  const query = {
+    text: "UPDATE checkouts SET estado = $1 WHERE id = $2 RETURNING *",
+    values: [estado, id],
+  };
+  const { rows } = await pool.query(query);
+  return rows[0];
+};
+
+
+export const checkoutModel = { 
+  crearCheckoutConItems, 
+  findAllAdmin, 
+  findItemsByCheckoutId, 
+  updateEstado 
+};
