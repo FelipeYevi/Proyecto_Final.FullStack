@@ -12,7 +12,8 @@ const createUser = async ({ email, password_hash, role = 'user' }) => {
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *
   `;
-
+  // Eliminamos el 'id' de la lista de valores. 
+  // Postgres asignará el número siguiente automáticamente.
   const values = [
     email, 
     password_hash, 

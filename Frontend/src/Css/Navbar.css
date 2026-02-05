@@ -1,3 +1,14 @@
+
+.navbar-container { 
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 8px; 
+}
+
+
 .navbar-logo {
   height: 80px;         
   width: auto;           
@@ -6,6 +17,19 @@
 
 @media (max-width: 576px) {
   .navbar-logo {
-    height: 32px;
+    height: 45px; 
+  }
+
+  .navbar-links {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+    gap: 5px;
+  }
+
+  .navbar-links button, .navbar-links .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    flex: 1; 
   }
 }

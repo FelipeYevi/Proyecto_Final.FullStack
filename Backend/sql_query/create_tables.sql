@@ -1,13 +1,17 @@
 
 -- TABLA USUARIOS
 
-CREATE TABLE  users (
-  id TEXT PRIMARY KEY,
-  email VARCHAR(255) UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user', -- Vital para el panel de admin
+    categoria_favorita VARCHAR(100),
+    region VARCHAR(100),
+    ciudad VARCHAR(100),
+    direccion VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 -- TABLA PRODUCTOS
 
@@ -30,6 +34,7 @@ CREATE TABLE checkouts (
   id SERIAL PRIMARY KEY, 
   user_id TEXT NOT NULL,
   total INTEGER NOT NULL,
+  estado VARCHAR(20) DEFAULT 'Pendiente',
   created_at TIMESTAMP DEFAULT NOW()
 );
 
