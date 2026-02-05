@@ -15,11 +15,10 @@ const PescaMosca = () => {
   useEffect(() => {
   const getProductos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/productos");
+      const response = await fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/productos");
       const data = await response.json();
       
-      // ✅ CORRECCIÓN SEGURA:
-      // Usamos (p.categoria || "") para que si es null, use un texto vacío y no explote.
+    
       const filtrados = data.filter(p => 
         (p.categoria || "").toLowerCase() === "pescamosca"
       );

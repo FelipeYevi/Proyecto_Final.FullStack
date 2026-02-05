@@ -9,7 +9,7 @@ const DetalleProducto = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/productos")
+    fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/productos")
       .then(res => res.json())
       .then(data => {
         const encontrado = data.find(p => p.id === id);

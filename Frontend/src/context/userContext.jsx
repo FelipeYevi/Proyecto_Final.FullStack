@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
     const cargarPerfil = async () => {
       if (token) {
         try {
-          const { data } = await axios.get("http://localhost:5000/api/auth/me", {
+          const { data } = await axios.get("https://proyecto-final-fullstack-dh99.onrender.com/api/auth/me", {
             headers: { Authorization: `Bearer ${token}` }
           });
         
@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
 //registtro
   const register = async (userData) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/register", userData);
+      const { data } = await axios.post("https://proyecto-final-fullstack-dh99.onrender.com/api/auth/register", userData);
       return { success: true, message: data.message || "Registro exitoso" };
     } catch (error) {
       return { 
@@ -41,7 +41,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/login", credentials);
+      const { data } = await axios.post("https://proyecto-final-fullstack-dh99.onrender.com/api/auth/login", credentials);
       setToken(data.token);
       setEmail(data.email);
       setRole(data.role);

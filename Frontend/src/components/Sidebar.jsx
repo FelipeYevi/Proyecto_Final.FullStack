@@ -5,7 +5,7 @@ const Sidebar = () => {
   const [randomProds, setRandomProds] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/productos")
+    fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/productos")
       .then((res) => res.json())
       .then((data) => {
         // 4 productos al azar

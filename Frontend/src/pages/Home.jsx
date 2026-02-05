@@ -11,7 +11,7 @@ const Home = () => {
 
   const getProductos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/productos");
+      const response = await fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/productos");
       const data = await response.json();
       if (Array.isArray(data)) {
         setProductos(data);

@@ -36,7 +36,7 @@ const AdminPage = () => {
  
   const cargarProductos = async () => {
     try {
-      const data = await fetchJSON("http://localhost:5000/api/productos");
+      const data = await fetchJSON("https://proyecto-final-fullstack-dh99.onrender.com/api/productos");
       const lista = Array.isArray(data) ? data : [];
       setProductos(lista);
       setProductosOriginales(lista);
@@ -59,7 +59,7 @@ const AdminPage = () => {
 
   const eliminarProducto = async (id) => {
     try {
-      await fetchJSON(`http://localhost:5000/api/productos/${id}`, {
+      await fetchJSON(`https://proyecto-final-fullstack-dh99.onrender.com/api/productos/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ const AdminPage = () => {
         .map((x) => x.trim())
         .filter(Boolean);
 
-      await fetchJSON("http://localhost:5000/api/productos", {
+      await fetchJSON("https://proyecto-final-fullstack-dh99.onrender.com/api/productos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ const AdminPage = () => {
         .map((x) => x.trim())
         .filter(Boolean);
 
-      await fetchJSON(`http://localhost:5000/api/productos/${productoAEditar.id}`, {
+      await fetchJSON(`https://proyecto-final-fullstack-dh99.onrender.com/api/productos/${productoAEditar.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

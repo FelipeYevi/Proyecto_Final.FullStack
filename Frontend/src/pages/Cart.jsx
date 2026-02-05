@@ -15,7 +15,7 @@ const Cart = () => {
   useEffect(() => {
     const getProductos = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/productos");
+        const response = await fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/productos");
         if (!response.ok) throw new Error("Error al obtener los productos");
         await response.json();
       } catch (err) {
@@ -44,7 +44,7 @@ const Cart = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/api/checkouts",
+        "https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts",
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );

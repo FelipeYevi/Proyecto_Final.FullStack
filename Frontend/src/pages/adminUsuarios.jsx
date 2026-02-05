@@ -11,7 +11,7 @@ const AdminUsuarios = () => {
     try {
       setError("");
 
-      const res = await fetch("http://localhost:5000/api/admin/users", {
+      const res = await fetch("https://proyecto-final-fullstack-dh99.onrender.com/api/admin/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

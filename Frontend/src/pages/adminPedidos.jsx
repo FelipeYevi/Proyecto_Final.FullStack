@@ -11,7 +11,7 @@ const AdminPedidos = () => {
 
   const fetchPedidos = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/checkouts/admin/listado", {
+      const res = await axios.get("https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/listado", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPedidos(res.data);
@@ -28,7 +28,7 @@ const AdminPedidos = () => {
     setDetalle(null);
     setShowModal(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/checkouts/admin/detalle/${id}`, {
+      const res = await axios.get(`https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/detalle/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setDetalle(res.data);
@@ -40,7 +40,7 @@ const AdminPedidos = () => {
   const completarPedido = async (id) => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/checkouts/admin/estado/${id}`,
+        `https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/estado/${id}`,
         { estado: "completado" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

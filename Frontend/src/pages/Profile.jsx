@@ -38,7 +38,7 @@ useEffect(() => {
 
   const fetchUserStats = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/usuarios/stats", {
+      const { data } = await axios.get("https://proyecto-final-fullstack-dh99.onrender.com/api/usuarios/stats", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPedidosCount(data.pedidosCount || 0);
@@ -50,7 +50,7 @@ useEffect(() => {
   const guardarCambios = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("http://localhost:5000/api/usuarios/perfil", editData, {
+      const { data } = await axios.put("https://proyecto-final-fullstack-dh99.onrender.com/api/usuarios/perfil", editData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

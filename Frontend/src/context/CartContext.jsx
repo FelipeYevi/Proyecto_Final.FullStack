@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
   const saveCartToDB = async (currentCart) => {
     if (!token || !user?.email) return;
     try {
-      await axios.post("http://localhost:5000/api/cart/sync", 
+      await axios.post("https://proyecto-final-fullstack-dh99.onrender.com/api/cart/sync", 
         { cart: currentCart }, 
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
           await saveCartToDB(cart);
         } else {
           try {
-            const { data } = await axios.get("http://localhost:5000/api/cart", {
+            const { data } = await axios.get("https://proyecto-final-fullstack-dh99.onrender.com/api/cart", {
               headers: { Authorization: `Bearer ${token}` }
             });
             setCart(data || []);
