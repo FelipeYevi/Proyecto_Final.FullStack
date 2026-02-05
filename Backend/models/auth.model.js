@@ -6,13 +6,23 @@ const getUserByEmail = async (email) => {
   return rows[0] || null;
 };
 
-const createUser = async ({ id, email, password_hash, role }) => {
+const createUser = async ({ email, password_hash, role = 'user' }) => {
   const query = `
-    INSERT INTO users (id, email, password_hash, role, region, ciudad, direccion, categoria_favorita)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO users (email, password_hash, role, region, ciudad, direccion, categoria_favorita)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *
   `;
-  const values = [id, email, password_hash, role, "", "", "", "Pesca con mosca"];
+
+  const values = [
+    email, 
+    password_hash, 
+    role, 
+    "", 
+    "", 
+    "", 
+    "Pesca con mosca"
+  ];
+  
   const { rows } = await pool.query(query, values);
   return rows[0];
 };
