@@ -83,7 +83,7 @@ const AdminPedidos = () => {
 
               <tbody>
                 {pedidos.map((p) => {
-                  // ✅ A prueba de errores: normalizamos estado una vez
+                  
                   const estadoNorm = (p.estado ?? "")
                     .toString()
                     .trim()
@@ -95,7 +95,6 @@ const AdminPedidos = () => {
                     <tr key={p.id}>
                       <td className="ps-4">#{p.id}</td>
 
-                      {/* user_email mediante join */}
                       <td className="text-muted small">{p.user_email}</td>
 
                       <td className="fw-bold text-success">
@@ -110,7 +109,7 @@ const AdminPedidos = () => {
                               : "bg-success-subtle text-success border-success"
                           }`}
                         >
-                          {/* ✅ mostramos bonito pero sin depender del formato original */}
+               
                           {esPendiente ? "Pendiente" : "Completado"}
                         </span>
                       </td>
