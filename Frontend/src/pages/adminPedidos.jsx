@@ -94,11 +94,16 @@ const AdminPedidos = () => {
                     </td>
                     <td>
                       <span
-                        className={`badge border ${p.estado === "pendiente" ? "bg-warning-subtle text-warning border-warning" : "bg-success-subtle text-success border-success"}`}
+                        className={`badge border ${
+                          p.estado === "PENDIENTE"
+                            ? "bg-warning-subtle text-warning border-warning"
+                            : "bg-success-subtle text-success border-success"
+                        }`}
                       >
-                        {p.estado.toUpperCase()}
+                        {p.estado}
                       </span>
                     </td>
+
                     <td className="text-center">
                       <button
                         className="btn btn-dark btn-sm me-2 px-3"
@@ -107,7 +112,8 @@ const AdminPedidos = () => {
                         <i className="bi bi-file-earmark-text me-1"></i> Ver
                         Productos
                       </button>
-                      {p.estado === "pendiente" && (
+
+                      {p.estado === "PENDIENTE" && (
                         <button
                           className="btn btn-outline-success btn-sm px-3"
                           onClick={() => completarPedido(p.id)}
