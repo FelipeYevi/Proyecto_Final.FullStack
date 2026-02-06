@@ -29,17 +29,16 @@ const crearCheckoutConItems = async ({ user_id, items }) => {
     client.release();
   }
 };
-
 const findAllAdmin = async () => {
   const query = `
     SELECT 
       c.id, 
       c.total, 
       c.estado, 
-      u.email AS user_email,
-      c.fecha
+      u.email AS user_email, 
+      c.created_at
     FROM checkouts c
-    LEFT JOIN users u ON c.user_id = u.id
+    LEFT JOIN users u ON c.user_id::text = u.id::text
     ORDER BY c.id DESC
   `;
   const { rows } = await pool.query(query);
