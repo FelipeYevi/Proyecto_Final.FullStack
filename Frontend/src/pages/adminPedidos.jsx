@@ -84,46 +84,51 @@ const AdminPedidos = () => {
                 </tr>
               </thead>
               <tbody>
-                {pedidos.map((p) => (
-                  <tr key={p.id}>
-                    <td className="ps-4">#{p.id}</td>
-                    {/* user_email medinate join */}
-                    <td className="text-muted small">{p.user_email}</td>
-                    <td className="fw-bold text-success">
-                      ${Number(p.total).toLocaleString()}
-                    </td>
-                    <td>
-                      <span
-                        className={`badge border ${
-                          p.estado === "PENDIENTE"
-                            ? "bg-warning-subtle text-warning border-warning"
-                            : "bg-success-subtle text-success border-success"
-                        }`}
-                      >
-                        {p.estado}
-                      </span>
-                    </td>
+                {pedidos.map((p) => {
+                  const estado = (p.estado ?? "")
+                    .toString()
+                    .trim()
+                    .toUpperCase();
+                  const esPendiente = estado === "PENDIENTE";
 
-                    <td className="text-center">
-                      <button
-                        className="btn btn-dark btn-sm me-2 px-3"
-                        onClick={() => verDetalle(p.id)}
-                      >
-                        <i className="bi bi-file-earmark-text me-1"></i> Ver
-                        Productos
-                      </button>
+                  return (
+                    <tr key={p.id}>
+                      {/* ...otras celdas... */}
 
-                      {p.estado === "PENDIENTE" && (
-                        <button
-                          className="btn btn-outline-success btn-sm px-3"
-                          onClick={() => completarPedido(p.id)}
+                      <td>
+                        <span
+                          className={`badge border ${
+                            esPendiente
+                              ? "bg-warning-subtle text-warning border-warning"
+                              : "bg-success-subtle text-success border-success"
+                          }`}
                         >
-                          <i className="bi bi-check2-circle me-1"></i> Completar
+                          {estado === "PENDIENTE" ? "Pendiente" : "Completado"}
+                        </span>
+                      </td>
+
+                      <td className="text-center">
+                        <button
+                          className="btn btn-dark btn-sm me-2 px-3"
+                          onClick={() => verDetalle(p.id)}
+                        >
+                          <i className="bi bi-file-earmark-text me-1"></i> Ver
+                          Productos
                         </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+
+                        {esPendiente && (
+                          <button
+                            className="btn btn-outline-success btn-sm px-3"
+                            onClick={() => completarPedido(p.id)}
+                          >
+                            <i className="bi bi-check2-circle me-1"></i>{" "}
+                            Completar
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
