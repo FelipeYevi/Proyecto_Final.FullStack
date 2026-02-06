@@ -4,7 +4,7 @@ const crearCheckoutConItems = async ({ user_id, items }) => {
   const client = await pool.connect();
   try {
     await client.query("BEGIN");
-    
+     
     const total = items.reduce((acc, item) => acc + (item.unit_price * item.quantity), 0);
 
     const checkoutRes = await client.query(
