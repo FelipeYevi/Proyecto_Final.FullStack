@@ -69,14 +69,10 @@ const PescaMosca = () => {
                 <option value="3">Más nuevos</option>
               </select>
             </div>
-            <div className="container">
-              <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-                {currentItems.map((producto) => (
-                  <div className="col" key={producto.id}>
-                    <CardProducto {...producto} />
-                  </div>
-                ))}
-              </div>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+              {currentItems.map((p) => (
+                <div className="col" key={p.id}><CardProducto {...p} addToCart={() => addToCart(p)} /></div>
+              ))}
             </div>
          
             {/* paginacion */}

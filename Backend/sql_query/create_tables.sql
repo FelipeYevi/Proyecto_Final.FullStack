@@ -5,7 +5,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    role VARCHAR(20) DEFAULT 'user', -- Vital para el panel de admin
+    role VARCHAR(20) DEFAULT 'user', 
     categoria_favorita VARCHAR(100),
     region VARCHAR(100),
     ciudad VARCHAR(100),
