@@ -15,7 +15,7 @@ const AdminPedidos = () => {
         "https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/listado",
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       );
       setPedidos(res.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const AdminPedidos = () => {
         `https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/detalle/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       );
       setDetalle(res.data);
     } catch (error) {
@@ -48,7 +48,7 @@ const AdminPedidos = () => {
       await axios.patch(
         `https://proyecto-final-fullstack-dh99.onrender.com/api/checkouts/admin/estado/${id}`,
         { estado: "completado" },
-        { headers: { Authorization: `Bearer ${token}` } },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchPedidos();
     } catch (error) {
@@ -61,10 +61,7 @@ const AdminPedidos = () => {
       <div className="d-flex">
         <SidebarAdmin />
 
-        <div
-          className="flex-grow-1 p-5 bg-white"
-          style={{ minHeight: "100vh" }}
-        >
+        <div className="flex-grow-1 p-5 bg-white" style={{ minHeight: "100vh" }}>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="fw-bold m-0">GESTIÓN DE PEDIDOS</h2>
             <select className="form-select w-auto bg-light border-0 shadow-sm">
@@ -83,17 +80,27 @@ const AdminPedidos = () => {
                   <th className="text-center">Acciones</th>
                 </tr>
               </thead>
+
               <tbody>
                 {pedidos.map((p) => {
-                  const estado = (p.estado ?? "")
+                  // ✅ A prueba de errores: normalizamos estado una vez
+                  const estadoNorm = (p.estado ?? "")
                     .toString()
                     .trim()
                     .toUpperCase();
-                  const esPendiente = estado === "PENDIENTE";
+
+                  const esPendiente = estadoNorm === "PENDIENTE";
 
                   return (
                     <tr key={p.id}>
-                      {/* ...otras celdas... */}
+                      <td className="ps-4">#{p.id}</td>
+
+                      {/* user_email mediante join */}
+                      <td className="text-muted small">{p.user_email}</td>
+
+                      <td className="fw-bold text-success">
+                        ${Number(p.total).toLocaleString("es-CL")}
+                      </td>
 
                       <td>
                         <span
@@ -103,7 +110,8 @@ const AdminPedidos = () => {
                               : "bg-success-subtle text-success border-success"
                           }`}
                         >
-                          {estado === "PENDIENTE" ? "Pendiente" : "Completado"}
+                          {/* ✅ mostramos bonito pero sin depender del formato original */}
+                          {esPendiente ? "Pendiente" : "Completado"}
                         </span>
                       </td>
 
@@ -151,6 +159,7 @@ const AdminPedidos = () => {
                   onClick={() => setShowModal(false)}
                 ></button>
               </div>
+
               <div
                 className="modal-body p-0"
                 style={{ maxHeight: "450px", overflowY: "auto" }}
@@ -170,18 +179,22 @@ const AdminPedidos = () => {
                           Cant: {item.quantity}
                         </span>
                       </div>
+
                       <div className="d-flex justify-content-between mt-2 small">
                         <span className="text-muted">
-                          Unitario: ${Number(item.unit_price).toLocaleString()}
+                          Unitario: $
+                          {Number(item.unit_price).toLocaleString("es-CL")}
                         </span>
                         <span className="fw-bold text-success">
-                          Subtotal: ${Number(item.subtotal).toLocaleString()}
+                          Subtotal: $
+                          {Number(item.subtotal).toLocaleString("es-CL")}
                         </span>
                       </div>
                     </div>
                   ))
                 )}
               </div>
+
               <div className="modal-footer border-0 p-3">
                 <button
                   className="btn btn-secondary w-100 py-2 fw-bold"
