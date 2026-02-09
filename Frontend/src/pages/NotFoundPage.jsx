@@ -1,5 +1,4 @@
 import React from "react";
-import imageError404 from "/img/error404.png";
 
 import { Link } from "react-router-dom";
 
@@ -8,7 +7,7 @@ const NotFoundPage = () => {
     <div className="container text-center mt-5">
      
       <img
-        src={imageError404}
+        src="/img/error404.png"
         alt="error404"
         style={{ width: "600px", height: "auto" }}
       />
