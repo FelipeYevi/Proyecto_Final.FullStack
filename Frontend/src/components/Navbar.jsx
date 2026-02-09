@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className="navbar navbar-dark bg-dark px-3 p-0">
       <div className="d-flex align-items-center gap-2">
         <img
-          src="../src/assets/img/logo-full-fishing.png"
+          src="/img/logo-full-fishing.png"
           alt="Logo Full Fishing"
           className="navbar-logo"
         />

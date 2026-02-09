@@ -3,8 +3,6 @@ import "dotenv/config";
 
 const { Pool } = pkg;
 
-// Si existe DATABASE_URL (en Render), la usa directamente. 
-// Si no (en local), usa los datos por separado.
 const isProduction = process.env.NODE_ENV === "production";
 
 export const pool = new Pool({
